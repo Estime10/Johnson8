@@ -5,7 +5,8 @@
   "main": "index.mjs",
   "scripts": {
     "fill": "node fillTable.mjs",
-    "dev": "nodemon index.mjs"
+    "dev": "node index.mjs",
+    "start": "node connect.mjs"
   },
   "author": "Estime",
   "type": "module",
@@ -15,5 +16,9 @@
     "express": "^4.18.2",
     "nodemon": "^2.0.20",
     "pg": "^8.8.0"
+  },
+  "devDependencies": {
+    "body-parser": "^1.20.1",
+    "uuid": "^9.0.0"
   }
 }
