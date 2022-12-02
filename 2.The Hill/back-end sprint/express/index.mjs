@@ -14,7 +14,7 @@ const client = new pg.Client({
 })
 
   const queryTable = `
-  CREATE TABLE  if not exists usersLists (
+  CREATE TABLE  if not exists first_db (
       "id" int,
       "firstName" varchar not null,
       "lastName" varchar  not null,
@@ -40,7 +40,7 @@ client
   .then(() =>
     users.forEach((user) => {
       let { id, firstName, lastName, email, ip } = user;
-      client.query("insert into userLists values ($1, $2, $3, $4, $5)", [
+      client.query("insert into first_db values ($1, $2, $3, $4, $5)", [
         id,
         firstName,
         lastName,
@@ -48,7 +48,7 @@ client
         ip,
       ])
 
-    .then(() => client.query("select DISTINCT * from usersLists Order by id"))
+    .then(() => client.query("select DISTINCT * from first_db Order by id"))
     .then((results) => console.table(results.rows))
     .finally(() => client.end());
     })
@@ -68,7 +68,7 @@ client
       res.json(note)
     })
 
-  // app.use(express.json())
+  
   app.post("/users", (req, res) => {
       const { id,firstName, lastName, email, ip } = req.body;
     
