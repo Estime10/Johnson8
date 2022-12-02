@@ -7,7 +7,7 @@
 //   user: 'postgres',
 //   host: 'localhost',
 //   database:"first_db",
-//   password: `${process.env.MYSQL_PASSWORD}`,
+//   password: `${process.env.PASSWORD}`,
 //   port: 5432,
 // })
 
