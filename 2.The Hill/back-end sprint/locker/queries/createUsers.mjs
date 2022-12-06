@@ -1,11 +1,11 @@
 import client from "../db/client.mjs"
 
 const createUser = (request, response) => {
-    const { firstname, secondname, email, password } = request.body;
+    const { email , firstname, lastname, nickname, password  } = request.body;
   
     client.query(
-      "INSERT INTO users (firstName, secondName, email, password) VALUES ( $1, $2, $3, $4) RETURNING *",
-      [firstname, secondname, email, password],
+      "INSERT INTO members (email , firstname, lastname, nickname, password ) VALUES ( $1, $2, $3, $4, $5) RETURNING *",
+      [email  , firstname, lastname, nickname, password ],
       (error, results) => {
         if (error) {
           throw error;

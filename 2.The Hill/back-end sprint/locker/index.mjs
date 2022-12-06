@@ -19,7 +19,7 @@ app.get("/", (req, res) =>{
     res.json({ info: "creation/DB, virtual Chat"})
 })
 
-app.post("/", (req, res) =>{
+app.post("/post", (req, res) =>{
     console.log(req.body)
     console.log(res)
 })
