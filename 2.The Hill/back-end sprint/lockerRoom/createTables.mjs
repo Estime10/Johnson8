@@ -30,7 +30,7 @@ DROP TABLE IF EXISTS users;
   DROP TABLE IF EXISTS messages;
   CREATE SEQUENCE messages_seq;
   CREATE TABLE messages (
-    id SERIAL NOT NOT NULL,
+    id SERIAL NOT NULL,
     id_users INTEGER NOT NULL,
     id_lobbies INTEGER NOT NULL,
     content VARCHAR(1) NOT NULL,
