@@ -1,0 +1,21 @@
+{
+  "name": "back-end-sprint",
+  "version": "1.0.0",
+  "description": "creating locker room app ",
+  "main": "index.mjs",
+  "scripts": {
+    "dev": "nodemon index.mjs"
+  },
+  "author": "the Real Batman",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^8.5.1"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.3",
+    "nodemon": "^2.0.20",
+    "pg": "^8.8.0"
+  }
+}
