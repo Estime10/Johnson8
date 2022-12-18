@@ -1,0 +1,27 @@
+<% if(typeof errors != "undefined") { %>
+    <% errors.forEach( (error) =>{ %>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <%= error.message %>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+   <% }) %>
+<% } %>
+
+<% if(success_msg!= '') { %> 
+    <p><%=success_msg %> </p> 
+    <% } %>
+
+
+    <% if(error_msg != '') { %> 
+        <%= error_msg %> 
+      <% } %> 
+      <% if(error != '') { %> 
+        <%= error %> 
+      <% } %>
+
+
+      
+        
+        
