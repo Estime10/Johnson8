@@ -17,8 +17,8 @@
     .todo-container {
     color: white;
     position: absolute;
-    top:50%;
-    left: 65%;
+    top:75%;
+    left: 70%;
     padding: 20px;
     width: 600px;
     transform: translate(-50%,-50%);
@@ -37,18 +37,19 @@
     font-size: 2em;
     }
     .todo-header input {
-    width: 92%;
+    width: 100%;
     border: none;
     border-radius: 5px;
-    height: 20px;
+    height: 100px;
     font-family: 'Candal', sans-serif;
     }
     .todo-header button {
     color: white;
     border: none;
-    border-radius: 50%;
+    border-radius: 0%;
     cursor: pointer;
     padding: 5px;
+    margin-top: 10px;
     font-family: 'Candal', sans-serif;
     background-color: rgb(51, 212, 100);
     }
