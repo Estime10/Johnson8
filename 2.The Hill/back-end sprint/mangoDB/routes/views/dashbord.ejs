@@ -2,7 +2,10 @@
 
 
 
-<p class="lead mb-3">Welcome Into The Real BOOK FACE</p>
+<p class="lead mb-3">Dear<span class="Dashname"> 
+    <%= user.name %></span>  , Welcome Into The Real BOOK FACE</p>
+  
+  
 
 <a href="/logout" class="btn btn-secondary">Logout</a>
 
@@ -16,7 +19,7 @@
     
     <body>
     <div class="todo-container">
-    <h2>Book Face Feed</h2>
+    <h2>Feed Book</h2>
     <div class="todo">
 
     <form action="/dashbord" method="POST" class="todo-header">
@@ -28,13 +31,17 @@
     <% postingMessage.forEach(details => { %>
     <li class="todo-list-item">
     <div class="todo-list-item-name">
-        <%= details.content %>
+        
+      <span class="postname">
+        <%= details.name %>
+      </span>
     </div>
     
   
-  
-      <br>
-
+  <br>
+  <br>
+      
+    <%= details.content %>
     <a href="/edit/<%= details._id %>" class="edit">
     
     <span class="fas fa-edit"></span>

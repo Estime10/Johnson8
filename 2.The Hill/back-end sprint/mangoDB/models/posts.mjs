@@ -1,20 +1,34 @@
 import mongoose from "mongoose"
 
 const postingMessage = new mongoose.Schema({
- 
-    content: {
+
+        name :{
+        type  : String,
+        required : true
+        } ,
+        content: {
         type: String,
-        require: true
-    },
-    date: {
+        required: true
+        },
+        date: {
         type: Date,
         default: Date.now
-    },
-    userId: {
-      type: String,
-      required: true,
-      },
-})
+        },
+        userId: {
+        type: String,
+        required: true,
+        },
+        img: {
+        type: String,
+        },
+        likes: {
+        type: Array,
+        default: [],
+        },
+        },
+          { timestamps: true }
+        );
+
 
 const Post = mongoose.model("Post", postingMessage )
 export default Post

@@ -144,48 +144,41 @@ app.get('/logout', (req, res) => {
       if (err) {
         // An error occurred during the logout process
         console.error(err);
-        
       }
-  
       // Redirect the user to the login page
       res.redirect('/login');
     });
   });
-  
 // POSTS
 app.get("/dashbord", (req,res) =>{
     Post.find({}, (err, postingMessage) => {
-
         if (err) {
             // An error occurred
             console.error(err);
             return res.sendStatus(500);
           }
-
     res.render("dashbord.ejs", { user: req.user, postingMessage: postingMessage})
   })
 })
-app.post("/dashbord", async (req, res) =>{
-    const postingMessage = Post ({
-        
-        content: req.body.content
-        
+app.post("/dashbord", async (req, res) => {
+
+    const postingMessage = new Post({
+        content: req.body.content,
+        name:req.user.name
     })
     if (req.user) {
-        postingMessage.userId = req.user._id
-
-    try { 
+      postingMessage.userId = req.user._id;
+      try {
         await postingMessage.save()
-        res.render("dashbord", { user: req.user, postingMessage: postingMessage})
+        res.render("dashbord", { user: req.user, postingMessage: postingMessage });
         res.redirect("dashbord")
-    }   catch (err) {
+      } catch (err) {
         console.log(err)
         res.redirect("/")
+      }
     }
-    
-    }
+  })
   
-})
 const PORT = 3000
 
 app.listen(PORT, console.log(`Server started on port 3000`))
