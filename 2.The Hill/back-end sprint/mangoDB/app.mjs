@@ -10,6 +10,7 @@ import Post from "./models/posts.mjs"
 import User from "./models/user.mjs"
 import bcrypt from "bcryptjs"
 import ensureAuthenticated from "./config/auth.mjs"
+import { render } from "ejs"
 dotenv.config()
 // Conexion to Server
 const app = express()
