@@ -6,6 +6,9 @@ import usersRouter from "./route/users.mjs"
 import flash from "connect-flash"
 import session from "express-session"
 import dotenv from "dotenv"
+import passport from "passport"
+import passportConfig from "./config/passport.mjs"
+
 
 dotenv.config()
 const app = express()
@@ -26,6 +29,10 @@ app.use(session({
     resave: true,
     saveUninitialized: true,
 }))
+// Passport middelware
+passportConfig(passport)
+app.use(passport.initialize())
+app.use(passport.session())
 // Connect-flash
 app.use(flash())
 // Global Variables

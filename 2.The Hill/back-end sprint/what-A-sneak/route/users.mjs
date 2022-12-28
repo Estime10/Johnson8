@@ -1,15 +1,18 @@
-import express from "express"
+
 import Router from "express"
 import User from "../models/User.mjs"
 import bcrypt from "bcryptjs"
+import passport from "passport"
+import passportConfig from "../config/passport.mjs"
 const router = Router();
+passportConfig(passport)
 
 
 // Login page
 router.get("/login", ( req, res) =>{
     res.render("login")
 })
-// Registeer page
+// Register page
 router.get("/register", ( req, res) =>{
     res.render("register")
 })
@@ -75,5 +78,26 @@ if( errors.length> 0) {
  }
 })
 
+// Login handle
+router.post("/login", (req, res, next) => {
+    passport.authenticate("local", {
+        successRedirect: "/mainpage",
+        failureRedirect: "/login",
+        failureFlash: true,
+    }) (req, res, next)
+  })
+// Logout handle
+router.get("/logout", (req, res) => {
+    req.logout( (err) =>{
+        if(err) { 
+            console.error(err)
+        } else {
+            req.flash("success.msg", "You're off the Sneakers Matrix")
+            res.redirect("/users/login")
+        }
+        
+    })
+    
+})
 
 export default router

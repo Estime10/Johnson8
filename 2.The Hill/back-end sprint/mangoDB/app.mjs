@@ -8,9 +8,14 @@ import passport from "passport"
 import passportConfig from './config/passport.mjs'
 import Post from "./models/posts.mjs"
 import User from "./models/user.mjs"
+import Poeple from "./models/poeple.mjs"
 import bcrypt from "bcryptjs"
 import ensureAuthenticated from "./config/auth.mjs"
-import { render } from "ejs"
+import cloudinary from "cloudinary"
+import fileUpload from "express-fileupload"
+
+
+
 dotenv.config()
 // Conexion to Server
 const app = express()
@@ -20,6 +25,12 @@ const URI = process.env.ATLAS_URI
 mongoose.connect(URI, { useNewUrlParser: true})
 .then( () => console.log("MongoBD Connected...")) 
 .catch ( err => console.log(err))
+// Connection to Cloudinary
+cloudinary.config({ 
+cloud_name: 'dhk6oudef', 
+api_key: '325937557113314', 
+api_secret: '_hRXtyXyDRYTkRvvtTJ3L94ywnU' 
+});
 // EJS
 app.use(expressEjsLayouts)
 // EJS css file
@@ -36,6 +47,11 @@ app.use(session({
     saveUninitialized: true
 }))
 
+// fileupload 
+app.use(fileUpload({
+  useTempFiles: true,
+  limits: { fileSize: 50 * 2024 * 1024 }
+}))
 // Passport mdlware
 passportConfig(passport);
 app.use(passport.initialize())
@@ -138,7 +154,7 @@ app.post("/login", (req, res, next) => {
         failureFlash: true,
     }) (req, res, next)
   })
-// Loggin out to do
+// Logout
 app.get('/logout', (req, res) => {
     // Use the logout function provided by passport, passing in a callback function
     req.logout(function(err) {
@@ -150,12 +166,13 @@ app.get('/logout', (req, res) => {
       res.redirect('/login');
     });
   });
-// POSTS
+// POSTS on the feed
 app.get("/dashbord", (req,res) =>{
     Post.find({}, (err, postingMessage) => {
         if (err) {
             // An error occurred
             console.error(err);
+            
             return res.sendStatus(500);
           }
     res.render("dashbord.ejs", { user: req.user, postingMessage: postingMessage})
@@ -163,22 +180,63 @@ app.get("/dashbord", (req,res) =>{
 })
 app.post("/dashbord", async (req, res) => {
 
+if (req.files && req.files.image) {
+  const file = req.files.image
+  const result = await cloudinary.uploader.upload(file.tempFilePath)
     const postingMessage = new Post({
         content: req.body.content,
-        name:req.user.name
+        name:req.user.name,
+        avatar: result.secure_url,
+      cloudinary_id: result.public_id,
     })
     if (req.user) {
       postingMessage.userId = req.user._id;
       try {
         await postingMessage.save()
-        res.render("dashbord", { user: req.user, postingMessage: postingMessage });
+        
         res.redirect("dashbord")
       } catch (err) {
         console.log(err)
         res.redirect("/")
       }
     }
-  })
+  } else {
+    res.redirect("register")
+  }
+})
+  // Post file //still need to find a way to fetch it to the user/add on the user_name
+ 
+  app.post("/", async ( req, res ) =>{
+
+    const file = req.files.image 
+    try {
+const result = await cloudinary.uploader.upload(file.tempFilePath)
+    let poeple = new Poeple({
+      name: req.body.name,
+      avatar: result.secure_url,
+      cloudinary_id: result.public_id,
+      })
+      await poeple.save()
+      res.json(poeple)
+    } catch (err) {
+        console.log(err)
+      }
+    })
+// // app.get("/login/add avatar") to put on the post bellow/add it to the loginEJS
+// app.get("/", async ( req, res) =>{
+//   try{
+//     let poeple = await Poeple.find()
+//     res.json(poeple)
+//   } catch (err) {
+//     console.log(err)
+//   }
+// })
+
+    
+    
+    
+   
+  
   
 const PORT = 3000
 

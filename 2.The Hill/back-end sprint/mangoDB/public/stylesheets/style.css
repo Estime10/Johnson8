@@ -17,7 +17,7 @@
     .todo-container {
     color: white;
     position: absolute;
-    top:75%;
+    top:100%;
     left: 70%;
     padding: 20px;
     width: 600px;
@@ -127,4 +127,7 @@
     overflow: auto;
     resize: vertical;
     width: 100%;
-    }     
+    }    
+    p.succes{
+        color: white;
+    } 

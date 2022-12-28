@@ -50,6 +50,14 @@
               placeholder="Confirm Password"
               value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
             />
+
+            <div class="profile-image">
+              <label for="image">Uploade Avatar</label><br>
+              <input type="file" name="upload_file"/><br>
+            </div>
+            
+            <br><br>
+            <button type="submit" class="btn btn-primary btn-block">Login</button>
           </div>
           <button type="submit" class="btn btn-primary btn-block">
             Register
