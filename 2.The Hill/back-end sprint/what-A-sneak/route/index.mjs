@@ -1,7 +1,7 @@
-import express from "express"
-import Router from "express"
 import authenticate from "../config/auth.mjs"
-const router = Router()
+import express from "express"
+const router = express.Router()
+
 
 //Welcome page 
 router.get("/", ( req, res) =>{
