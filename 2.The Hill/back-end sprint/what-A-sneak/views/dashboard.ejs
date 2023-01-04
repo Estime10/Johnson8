@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>what-a-sneaker</title>
+</head>
+<body>
+<h1 class="mt-4">What-a-Profile</h1>
+<p class="lead mb-3">Welcome </p>
+<a href="/users/logout" class="btn btn-secondary">Logout</a>
+
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+* {
+	box-sizing: border-box;
+}
+body {
+	font-family: 'Montserrat', sans-serif;
+}
+
+h1 {
+	font-weight: bold;
+	margin: 0;
+    
+}
+header{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: center;
+    margin-top: 50px;
+}
+.btn-activities {
+    padding: 10px 15px;
+    font-size: 18px; 
+    display: flex;
+    margin-top: 20px;
+    padding-left: 20px;
+}
+.following{
+    background-color: grey;
+    color: white;
+    border-radius: 20px;
+	background-color: black;
+	color: #FFFFFF;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 12px 45px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	transition: transform 80ms ease-in;
+    cursor: pointer;
+    margin-left: -20px;
+}
+.dm{
+    background-color: grey;
+    color: white;
+    border: none;
+    border-radius: 20px;
+	background-color: rgb(177, 177, 177);
+	color: #FFFFFF;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 12px 45px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	transition: transform 80ms ease-in;
+    cursor: pointer;
+    margin-left: 65px;
+    
+}
+.followers{
+    display: flex;
+    justify-content: space-between;
+}
+.name-pro{
+    display: flex;
+    justify-content: space-around;
+}
+</style>
+<body>
+    <header>
+            
+        <div class="container-pro">
+            
+            <div class="name-pro">
+                <img src="/uploads/image_1672604417698_What-a-sneak.png" alt="image" class="image-pro-left">
+               
+            </div>
+            <div class="bio">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. <br>
+                    Quis et itaque qui quas ducimus quisquam deserunt corporis <br>
+                     deleniti vitae voluptates consequatur, <br>
+                    illo dolorum. Aliquam iste doloribus ratione illum nesciunt? <br> 
+                    Iure!</p>
+            </div>
+            <div class="followers">
+                <p class="posts">posts
+                    <span>0</span>
+                </p>
+                <p class="follow">followers
+                    <span>0</span>
+                </p>
+                <p class="followed">followed
+                    <span id="following-count">0</span>
+                </p>
+            </div>
+            <div class="btn-activities">
+                <button class="following">
+                    <span><i class="fa-sharp fa-solid fa-plus"></i></span>
+                 follow
+            </button>
+            <button class="dm">
+                messages
+            </button>
+            </div>
+        </div>
+
+    </header>
+    <script>
+
+
+        // button follow
+        const followBtn = document.querySelector(".following")
+        // count followers
+        const count = document.querySelector("#following-count")
+        
+        // button clicked
+        let clicked = false;
+        followBtn.addEventListener("click", () =>{
+            if(!clicked) {
+                clicked = true;
+                count.textContent++;
+            } else {
+                clicked = false;
+                count.textContent--;
+            }
+        });
+
+
+    </script>
+</body>
+</html>
+
+
+
+<!-- need to link it to what I do  -->

@@ -3,7 +3,7 @@ const authenticate = (req, res, next) => {
       return next();
     }
     req.flash("error", "PLEASE LOG IN FIRST");
-    res.redirect("/users/login");
+    res.redirect("/login");
   };
   
 export default authenticate

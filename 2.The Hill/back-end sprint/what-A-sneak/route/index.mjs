@@ -1,16 +1,16 @@
-import authenticate from "../config/auth.mjs"
+
 import express from "express"
 const router = express.Router()
 
 
 //Welcome page 
 router.get("/", ( req, res) =>{
-    res.render("Welcome")
+    res.render("login")
 })
 // Main page
-router.get("/mainpage", authenticate, (req, res) =>{
-    res.render("mainpage", {
-        name: req.user.name
+router.get("/dashboard", (req, res) =>{
+    res.render("dashboard", {
+        // name: req.user.name
     })
 })
 
